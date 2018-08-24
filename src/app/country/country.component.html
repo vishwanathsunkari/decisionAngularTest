@@ -6,15 +6,13 @@
 <hr>
   <div class="form-group">
       <div class="col-md-6">
-    <input type="text" [(ngModel)]="searchISO" class="form-control" placeholder="search by Alpha2Code">
+    <input type="text"
+    (keypress)="get2code($event)"
+    [(ngModel)]="searchISO" class="form-control" placeholder="search by ISOCODE" >
       </div>
     </div>
 <hr>
-    <div class="form-group">
-        <div class="col-md-6">
-      <input type="text" [(ngModel)]="searchAlpha3" class="form-control" placeholder="search by Alpha3Code">
-        </div>
-      </div>
+
 
   <div class="row">
       <div class="col-lg-12">
@@ -33,12 +31,13 @@
                                   <th>Alpha3Code</th>
                               </tr>
                           </thead>
-                          <tbody>
-                              <tr *ngFor="let country of countries | filter: searchText: searchISO: searchAlpha3 ">
+                          <tbody *ngIf="countries.length!==0 else errorPage" >
+                              <tr *ngFor="let country of countries | filter: searchText">
                                   <td>{{country.name}}</td>
                                   <td>{{country.alpha2_code}}</td>
                                   <td>{{country.alpha3_code}}</td>
                                 </tr>
+                                <ng-template #errorPage> No RECORDS FOUND </ng-template>
                           </tbody>
                       </table>
                   </div>

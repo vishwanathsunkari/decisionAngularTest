@@ -11,14 +11,14 @@ export class CountryService {
 
    // 'Access-Control-Allow-Origin', '*'
   getCountries() {
-    return this.http.get(this._url);
+    return this.http.get('http://localhost:8000');
   }
+
+  get2CodeISOCountires(ISOcode) {
+    console.log('i am called', ISOcode);
+    return this.http.get('http://localhost:8000/isocode/' + ISOcode.toUpperCase());
+    }
   }
-
-
-  // http://services.groupkt.com/country/get/all
-
-
 
 
 

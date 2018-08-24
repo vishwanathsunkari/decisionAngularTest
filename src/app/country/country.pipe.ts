@@ -3,7 +3,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 @Pipe({name: 'filter'})
 export class CountryPipe implements PipeTransform {
   transform(countries: any , searchText: any , searchISO: any, searchAlpha3: any) {
-    if (countries) {
+    if (countries.length !== 0) {
       return countries.filter(country => {
           if (searchText && country.name.toLowerCase().indexOf( searchText.toLowerCase()) === -1) {
             return false;

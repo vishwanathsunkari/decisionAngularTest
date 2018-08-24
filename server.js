@@ -1,13 +1,37 @@
-var http = require('http');
+const express = require('express');
+const cors = require('cors')
+const app = express();
+const request = require("request");
 
-var httpProxy = require('http-proxy');
+// allow cros sorgin request i.e from angular client
+app.use(cors());
 
-var myproxy = httpProxy.createProxyServer({});
-http.createServer((req,res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Request-Method', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-  res.setHeader('Access-Control-Allow-Headers', '*');
-  myproxy.web(req,res,{target: 'http://services.groupkt.com/country/get/all'});
-}).listen(8000)
+app.get("/", (req,res) => {
+  console.log("/")
+  // myproxy.web(req,res,{target: 'http://services.groupkt.com/country/get/all'});
+  request("http://services.groupkt.com/country/get/all", (err,response,body) => {
+    res.send(body);
+  })
+});
+
+
+app.get("/isocode/:CODE",(req,res) => {
+  const isoCode = req.params.CODE;
+  // console.log(isoCode);
+  if(isoCode.length===2){
+    request("http://services.groupkt.com/country/get/iso2code/"+isoCode, (err,response,body) => {
+      res.send(body);
+  })
+  }
+  else if(isoCode.length===3){
+    request("http://services.groupkt.com/country/get/iso3code/"+isoCode, (err,response,body) => {
+      res.send(body);
+  });
+}
+    else {
+      res.send({"RestResponse": {}})
+    }
+});
+
+app.listen(8000);
 

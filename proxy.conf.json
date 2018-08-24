@@ -1,0 +1,8 @@
+{
+  "/api/getcountries": {
+    "target": "http://services.groupkt.com/country/get/all",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}
