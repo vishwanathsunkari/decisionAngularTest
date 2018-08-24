@@ -15,7 +15,6 @@ export class CountryService {
   }
 
   get2CodeISOCountires(ISOcode) {
-    console.log('i am called', ISOcode);
     return this.http.get('http://localhost:8000/isocode/' + ISOcode.toUpperCase());
     }
   }

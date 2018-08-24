@@ -32,7 +32,7 @@ public searchISO = '';
         this.countryService.get2CodeISOCountires(this.searchISO);
         this.countryService.get2CodeISOCountires(this.searchISO).subscribe(data => {
           this.countries = [];
-          if (data['RestResponse'].result){
+          if (data['RestResponse'].result) {
             this.countries.push(data['RestResponse'].result);
           }
         });
