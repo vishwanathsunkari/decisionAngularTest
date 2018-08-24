@@ -1,0 +1,48 @@
+<div class="form-group">
+    <div class="col-md-6">
+  <input type="text" [(ngModel)]="searchText" class="form-control" placeholder="search by country name">
+    </div>
+  </div>
+<hr>
+  <div class="form-group">
+      <div class="col-md-6">
+    <input type="text" [(ngModel)]="searchISO" class="form-control" placeholder="search by Alpha2Code">
+      </div>
+    </div>
+<hr>
+    <div class="form-group">
+        <div class="col-md-6">
+      <input type="text" [(ngModel)]="searchAlpha3" class="form-control" placeholder="search by Alpha3Code">
+        </div>
+      </div>
+
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                  <h2>Angular Country Services</h2>
+              </div>
+              <hr />
+              <div class="ibox-content">
+                  <div class="table-responsive">
+                      <table class="table table-striped">
+                          <thead>
+                              <tr>
+                                  <th>Country Name</th>
+                                  <th>Alpha2Code</th>
+                                  <th>Alpha3Code</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let country of countries | filter: searchText: searchISO: searchAlpha3 ">
+                                  <td>{{country.name}}</td>
+                                  <td>{{country.alpha2_code}}</td>
+                                  <td>{{country.alpha3_code}}</td>
+                                </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
